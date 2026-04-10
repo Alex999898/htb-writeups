@@ -3,7 +3,7 @@ description: "The most comprehensive Hack The Box writeup collection - 500+ mach
 url: "https://momenbasel.github.io"
 baseurl: "/htb-writeups"
 
-remote_theme: just-the-docs/just-the-docs@v0.10.0
+theme: just-the-docs
 
 color_scheme: dark
 
@@ -20,6 +20,9 @@ search.button: true
 
 heading_anchors: true
 
+plugins:
+  - jekyll-include-cache
+
 aux_links:
   "GitHub":
     - "https://github.com/momenbasel/htb-writeups"
@@ -32,17 +35,6 @@ back_to_top: true
 back_to_top_text: "Back to top"
 
 footer_content: 'Copyright &copy; 2026 <a href="https://github.com/momenbasel">Moamen Basel</a>. Distributed under the <a href="https://github.com/momenbasel/htb-writeups/blob/main/LICENSE">MIT License</a>.'
-
-ga_tracking:
-ga_tracking_anonymize_ip: true
-
-compress_html:
-  clippings: all
-  comments: all
-  endings: all
-  startings: []
-  blanklines: false
-  profile: false
 
 callouts:
   warning:
@@ -58,7 +50,9 @@ callouts:
 # Exclude files from the site
 exclude:
   - "0xdf-htb-machines.json"
+  - "0xdf-htb-machines.md"
   - "ippsec-video-index.json"
+  - "ippsec-video-index.md"
   - ".markdownlint.json"
   - "CONTRIBUTING.md"
   - "templates/"
@@ -66,33 +60,8 @@ exclude:
   - "Gemfile"
   - "Gemfile.lock"
 
-# Include dotfiles
-include:
-  - ".github"
-
-# Collections for better organization
-collections:
-  machines:
-    output: true
-    permalink: /machines/:path/
-
 defaults:
   - scope:
       path: ""
     values:
       layout: default
-  - scope:
-      path: "machines"
-    values:
-      layout: default
-      parent: Machines
-  - scope:
-      path: "challenges"
-    values:
-      layout: default
-      parent: Challenges
-  - scope:
-      path: "resources"
-    values:
-      layout: default
-      parent: Resources
