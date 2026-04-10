@@ -63,11 +63,11 @@ objection> android root disable
 
 | Tool | Purpose |
 |------|---------|
-| jadx | APK to Java decompilation |
-| apktool | APK resource decompilation |
-| Frida | Dynamic instrumentation |
-| Objection | Runtime mobile exploration |
-| MobSF | Automated mobile analysis |
-| adb | Android Debug Bridge |
-| Genymotion | Android emulator |
-| Burp Suite | Traffic interception |
+| [jadx](https://github.com/skylot/jadx) | APK to Java decompilation |
+| [apktool](https://github.com/iBotPeaches/Apktool) | APK resource decompilation |
+| [Frida](https://github.com/frida/frida) | Dynamic instrumentation |
+| [Objection](https://github.com/sensepost/objection) | Runtime mobile exploration |
+| [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF) | Automated mobile analysis |
+| [adb](https://developer.android.com/tools/adb) | Android Debug Bridge |
+| [Genymotion](https://www.genymotion.com/) | Android emulator |
+| [Burp Suite](https://portswigger.net/burp) | Traffic interception |

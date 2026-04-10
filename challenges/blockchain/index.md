@@ -54,10 +54,10 @@ forge create src/Exploit.sol:Exploit --rpc-url http://challenge:8545 --private-k
 
 | Tool | Purpose |
 |------|---------|
-| Foundry (forge/cast) | Solidity development and interaction |
-| Hardhat | JavaScript-based development environment |
-| Remix IDE | Browser-based Solidity IDE |
-| Etherscan | Block explorer |
-| Slither | Static analysis for Solidity |
-| Mythril | Symbolic execution for smart contracts |
-| Echidna | Fuzzing for smart contracts |
+| [Foundry](https://github.com/foundry-rs/foundry) (forge/cast) | Solidity development and interaction |
+| [Hardhat](https://github.com/NomicFoundation/hardhat) | JavaScript-based development environment |
+| [Remix IDE](https://remix.ethereum.org/) | Browser-based Solidity IDE |
+| [Etherscan](https://etherscan.io/) | Block explorer |
+| [Slither](https://github.com/crytic/slither) | Static analysis for Solidity |
+| [Mythril](https://github.com/Consensys/mythril) | Symbolic execution for smart contracts |
+| [Echidna](https://github.com/crytic/echidna) | Fuzzing for smart contracts |

@@ -72,9 +72,9 @@ def fgsm_attack(image, epsilon, gradient):
 
 | Tool | Purpose |
 |------|---------|
-| Garak | LLM vulnerability scanner |
-| ART (Adversarial Robustness Toolbox) | Adversarial ML attacks/defenses |
-| TextAttack | NLP adversarial attack framework |
-| Rebuff | Prompt injection detection |
-| LangChain | LLM application framework |
-| Ollama | Local LLM deployment |
+| [Garak](https://github.com/NVIDIA/garak) | LLM vulnerability scanner |
+| [ART](https://github.com/Trusted-AI/adversarial-robustness-toolbox) | Adversarial ML attacks/defenses |
+| [TextAttack](https://github.com/QData/TextAttack) | NLP adversarial attack framework |
+| [Rebuff](https://github.com/protectai/rebuff) | Prompt injection detection |
+| [LangChain](https://github.com/langchain-ai/langchain) | LLM application framework |
+| [Ollama](https://github.com/ollama/ollama) | Local LLM deployment |

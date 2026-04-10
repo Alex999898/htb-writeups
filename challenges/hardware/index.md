@@ -37,11 +37,11 @@ Writeups for HTB Hardware hacking challenges.
 
 | Tool | Purpose |
 |------|---------|
-| binwalk | Firmware extraction and analysis |
-| firmware-mod-kit | Firmware modification |
-| Saleae Logic | Logic analyzer software |
-| PulseView/sigrok | Open-source signal analysis |
+| [binwalk](https://github.com/ReFirmLabs/binwalk) | Firmware extraction and analysis |
+| [firmware-mod-kit](https://github.com/rampageX/firmware-mod-kit) | Firmware modification |
+| [Saleae Logic](https://www.saleae.com/) | Logic analyzer software |
+| [PulseView/sigrok](https://sigrok.org/wiki/PulseView) | Open-source signal analysis |
 | baudrate.py | UART baud rate detection |
-| flashrom | SPI flash reading/writing |
-| OpenOCD | JTAG/SWD debugging |
-| Audacity | Audio/signal analysis |
+| [flashrom](https://github.com/flashrom/flashrom) | SPI flash reading/writing |
+| [OpenOCD](https://github.com/openocd-org/openocd) | JTAG/SWD debugging |
+| [Audacity](https://www.audacityteam.org/) | Audio/signal analysis |

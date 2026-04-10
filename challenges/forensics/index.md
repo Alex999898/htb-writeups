@@ -42,16 +42,16 @@ Writeups for HTB Digital Forensics challenges.
 
 | Tool | Purpose | Common Usage |
 |------|---------|-------------|
-| Volatility 3 | Memory analysis | `vol -f dump.raw windows.pslist` |
-| Wireshark | PCAP analysis | GUI packet inspection |
-| tshark | CLI PCAP analysis | `tshark -r capture.pcap -Y "http"` |
-| Autopsy | Disk forensics | GUI disk image analysis |
-| binwalk | Firmware/file extraction | `binwalk -e firmware.bin` |
-| foremost | File carving | `foremost -i disk.img` |
+| [Volatility 3](https://github.com/volatilityfoundation/volatility3) | Memory analysis | `vol -f dump.raw windows.pslist` |
+| [Wireshark](https://www.wireshark.org/) | PCAP analysis | GUI packet inspection |
+| [tshark](https://www.wireshark.org/) | CLI PCAP analysis | `tshark -r capture.pcap -Y "http"` |
+| [Autopsy](https://www.autopsy.com/) | Disk forensics | GUI disk image analysis |
+| [binwalk](https://github.com/ReFirmLabs/binwalk) | Firmware/file extraction | `binwalk -e firmware.bin` |
+| [foremost](https://github.com/korczis/foremost) | File carving | `foremost -i disk.img` |
 | strings | String extraction | `strings -n 8 binary` |
-| exiftool | Metadata extraction | `exiftool image.jpg` |
-| CyberChef | Data transformation | Encoding, decoding, crypto |
-| FTK Imager | Disk imaging | Forensic image creation |
+| [exiftool](https://github.com/exiftool/exiftool) | Metadata extraction | `exiftool image.jpg` |
+| [CyberChef](https://github.com/gchq/CyberChef) | Data transformation | Encoding, decoding, crypto |
+| [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager) | Disk imaging | Forensic image creation |
 
 ## Analysis Categories
 

@@ -71,12 +71,12 @@ checksec --file=binary
 
 | Tool | Purpose |
 |------|---------|
-| pwntools | Python exploit development framework |
-| GDB + GEF/pwndbg | Dynamic debugging |
-| ROPgadget | Find ROP gadgets |
-| one_gadget | Find one-shot RCE gadgets in libc |
-| checksec | Check binary protections |
-| ropper | Alternative ROP gadget finder |
-| patchelf | Patch ELF binary interpreter/rpath |
-| seccomp-tools | Analyze seccomp filters |
-| Ghidra | Static analysis/decompilation |
+| [pwntools](https://github.com/Gallopsled/pwntools) | Python exploit development framework |
+| [GDB](https://www.sourceware.org/gdb/) + [GEF](https://github.com/hugsy/gef)/[pwndbg](https://github.com/pwndbg/pwndbg) | Dynamic debugging |
+| [ROPgadget](https://github.com/JonathanSalwan/ROPgadget) | Find ROP gadgets |
+| [one_gadget](https://github.com/david942j/one_gadget) | Find one-shot RCE gadgets in libc |
+| [checksec](https://github.com/slimm609/checksec.sh) | Check binary protections |
+| [ropper](https://github.com/sashs/Ropper) | Alternative ROP gadget finder |
+| [patchelf](https://github.com/NixOS/patchelf) | Patch ELF binary interpreter/rpath |
+| [seccomp-tools](https://github.com/david942j/seccomp-tools) | Analyze seccomp filters |
+| [Ghidra](https://github.com/NationalSecurityAgency/ghidra) | Static analysis/decompilation |

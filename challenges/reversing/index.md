@@ -54,15 +54,15 @@ Writeups for HTB Reverse Engineering challenges.
 
 | Tool | Purpose |
 |------|---------|
-| Ghidra | Primary decompiler and disassembler (free, NSA) |
-| IDA Free | Industry-standard disassembler |
-| radare2/rizin | CLI reverse engineering framework |
-| GDB + GEF | Dynamic analysis and debugging |
-| Binary Ninja | Modern binary analysis platform |
-| dnSpy | .NET assembly editor and debugger |
-| jadx | Java/Android decompiler |
-| x64dbg | Windows debugger |
-| Cutter | GUI for radare2 |
+| [Ghidra](https://github.com/NationalSecurityAgency/ghidra) | Primary decompiler and disassembler (free, NSA) |
+| [IDA Free](https://hex-rays.com/ida-free) | Industry-standard disassembler |
+| [radare2](https://github.com/radareorg/radare2)/[rizin](https://github.com/rizinorg/rizin) | CLI reverse engineering framework |
+| [GDB](https://www.sourceware.org/gdb/) + [GEF](https://github.com/hugsy/gef) | Dynamic analysis and debugging |
+| [Binary Ninja](https://binary.ninja) | Modern binary analysis platform |
+| [dnSpy](https://github.com/dnSpy/dnSpy) | .NET assembly editor and debugger |
+| [jadx](https://github.com/skylot/jadx) | Java/Android decompiler |
+| [x64dbg](https://github.com/x64dbg/x64dbg) | Windows debugger |
+| [Cutter](https://github.com/rizinorg/cutter) | GUI for radare2 |
 | strace/ltrace | System/library call tracing |
 
 ## Approach

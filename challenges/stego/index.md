@@ -96,13 +96,13 @@ strings output.pdf | grep -i flag
 
 | Tool | Purpose |
 |------|---------|
-| steghide | JPEG steganography |
-| zsteg | PNG/BMP LSB analysis |
-| stegsolve | Visual analysis GUI |
-| Audacity | Audio analysis |
-| Sonic Visualiser | Advanced audio spectrogram |
-| exiftool | Metadata extraction |
-| binwalk | Embedded file extraction |
-| foremost | File carving |
-| stegcracker | Steghide brute-force |
-| openstego | Various stego techniques |
+| [steghide](https://github.com/StefanoDeVuworst/steghide) | JPEG steganography |
+| [zsteg](https://github.com/zed-0xff/zsteg) | PNG/BMP LSB analysis |
+| [stegsolve](https://github.com/Giotino/stegsolve) | Visual analysis GUI |
+| [Audacity](https://www.audacityteam.org/) | Audio analysis |
+| [Sonic Visualiser](https://www.sonicvisualiser.org/) | Advanced audio spectrogram |
+| [exiftool](https://github.com/exiftool/exiftool) | Metadata extraction |
+| [binwalk](https://github.com/ReFirmLabs/binwalk) | Embedded file extraction |
+| [foremost](https://github.com/korczis/foremost) | File carving |
+| [stegcracker](https://github.com/Paradoxis/StegCracker) | Steghide brute-force |
+| [openstego](https://github.com/syvaidya/openstego) | Various stego techniques |

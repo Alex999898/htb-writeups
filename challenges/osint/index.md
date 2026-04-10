@@ -66,11 +66,11 @@ exiftool image.jpg
 
 | Tool | Purpose |
 |------|---------|
-| Maltego | Link analysis and visualization |
-| theHarvester | Email, subdomain, name collection |
-| Sherlock | Username search across platforms |
-| SpiderFoot | Automated OSINT collection |
-| exiftool | Image metadata extraction |
-| Shodan | Internet device search |
-| Censys | Internet-wide scanning data |
-| OSINT Framework | Collection of OSINT tools |
+| [Maltego](https://www.maltego.com/) | Link analysis and visualization |
+| [theHarvester](https://github.com/laramies/theHarvester) | Email, subdomain, name collection |
+| [Sherlock](https://github.com/sherlock-project/sherlock) | Username search across platforms |
+| [SpiderFoot](https://github.com/smicallef/spiderfoot) | Automated OSINT collection |
+| [exiftool](https://github.com/exiftool/exiftool) | Image metadata extraction |
+| [Shodan](https://www.shodan.io/) | Internet device search |
+| [Censys](https://search.censys.io/) | Internet-wide scanning data |
+| [OSINT Framework](https://osintframework.com/) | Collection of OSINT tools |
