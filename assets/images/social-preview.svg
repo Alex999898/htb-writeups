@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e17"/>
+      <stop offset="100%" style="stop-color:#141d2b"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9fef00;stop-opacity:0.3"/>
+      <stop offset="50%" style="stop-color:#9fef00;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#9fef00;stop-opacity:0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1280" height="4" fill="#9fef00"/>
+  <rect x="0" y="636" width="1280" height="4" fill="#9fef00"/>
+  <!-- Grid pattern -->
+  <g opacity="0.05" stroke="#9fef00" stroke-width="1">
+    <line x1="0" y1="80" x2="1280" y2="80"/>
+    <line x1="0" y1="160" x2="1280" y2="160"/>
+    <line x1="0" y1="240" x2="1280" y2="240"/>
+    <line x1="0" y1="320" x2="1280" y2="320"/>
+    <line x1="0" y1="400" x2="1280" y2="400"/>
+    <line x1="0" y1="480" x2="1280" y2="480"/>
+    <line x1="0" y1="560" x2="1280" y2="560"/>
+    <line x1="160" y1="0" x2="160" y2="640"/>
+    <line x1="320" y1="0" x2="320" y2="640"/>
+    <line x1="480" y1="0" x2="480" y2="640"/>
+    <line x1="640" y1="0" x2="640" y2="640"/>
+    <line x1="800" y1="0" x2="800" y2="640"/>
+    <line x1="960" y1="0" x2="960" y2="640"/>
+    <line x1="1120" y1="0" x2="1120" y2="640"/>
+  </g>
+  <!-- Terminal bracket -->
+  <text x="100" y="200" font-family="monospace" font-size="48" font-weight="bold" fill="#9fef00">$_</text>
+  <!-- Main title -->
+  <text x="170" y="200" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="56" font-weight="800" fill="#ffffff">HTB Writeups</text>
+  <!-- Subtitle -->
+  <text x="100" y="270" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="28" fill="#a4b1cd">The Ultimate Hack The Box Resource</text>
+  <!-- Stats -->
+  <g transform="translate(100, 330)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="none" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="80" y="28" text-anchor="middle" font-family="monospace" font-size="24" font-weight="bold" fill="#9fef00">500+</text>
+    <text x="80" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a4b1cd">MACHINES</text>
+  </g>
+  <g transform="translate(180, 330)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="none" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="80" y="28" text-anchor="middle" font-family="monospace" font-size="24" font-weight="bold" fill="#9fef00">400+</text>
+    <text x="80" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a4b1cd">CHALLENGES</text>
+  </g>
+  <g transform="translate(360, 330)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="none" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="80" y="28" text-anchor="middle" font-family="monospace" font-size="24" font-weight="bold" fill="#9fef00">70+</text>
+    <text x="80" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a4b1cd">SHERLOCKS</text>
+  </g>
+  <g transform="translate(540, 330)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="none" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="80" y="28" text-anchor="middle" font-family="monospace" font-size="24" font-weight="bold" fill="#9fef00">6</text>
+    <text x="80" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#a4b1cd">PROLABS</text>
+  </g>
+  <!-- Tags -->
+  <g transform="translate(100, 430)">
+    <rect x="0" y="0" width="80" height="28" rx="14" fill="#9fef00" fill-opacity="0.15" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="40" y="19" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#9fef00">OSCP</text>
+  </g>
+  <g transform="translate(90, 430)">
+    <rect x="0" y="0" width="80" height="28" rx="14" fill="#9fef00" fill-opacity="0.15" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="40" y="19" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#9fef00">CPTS</text>
+  </g>
+  <g transform="translate(180, 430)">
+    <rect x="0" y="0" width="80" height="28" rx="14" fill="#9fef00" fill-opacity="0.15" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="40" y="19" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#9fef00">CRTO</text>
+  </g>
+  <g transform="translate(270, 430)">
+    <rect x="0" y="0" width="120" height="28" rx="14" fill="#9fef00" fill-opacity="0.15" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="60" y="19" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#9fef00">Cheatsheets</text>
+  </g>
+  <g transform="translate(400, 430)">
+    <rect x="0" y="0" width="120" height="28" rx="14" fill="#9fef00" fill-opacity="0.15" stroke="#9fef00" stroke-opacity="0.3"/>
+    <text x="60" y="19" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#9fef00">Skill Trees</text>
+  </g>
+  <!-- Author -->
+  <text x="100" y="540" font-family="sans-serif" font-size="16" fill="#a4b1cd">github.com/momenbasel/htb-writeups</text>
+  <!-- Decorative nodes (knowledge graph hint) -->
+  <g opacity="0.4">
+    <circle cx="900" cy="200" r="40" fill="none" stroke="#4ade80" stroke-width="2"/>
+    <text x="900" y="205" text-anchor="middle" font-family="monospace" font-size="12" fill="#4ade80">Easy</text>
+    <circle cx="1050" cy="150" r="35" fill="none" stroke="#fb923c" stroke-width="2"/>
+    <text x="1050" y="155" text-anchor="middle" font-family="monospace" font-size="12" fill="#fb923c">Medium</text>
+    <circle cx="1100" cy="300" r="30" fill="none" stroke="#ef4444" stroke-width="2"/>
+    <text x="1100" y="305" text-anchor="middle" font-family="monospace" font-size="12" fill="#ef4444">Hard</text>
+    <circle cx="950" cy="350" r="25" fill="none" stroke="#a855f7" stroke-width="2"/>
+    <text x="950" y="355" text-anchor="middle" font-family="monospace" font-size="12" fill="#a855f7">Insane</text>
+    <line x1="935" y1="215" x2="1020" y2="155" stroke="#2a3a4e" stroke-width="1"/>
+    <line x1="1070" y1="180" x2="1095" y2="272" stroke="#2a3a4e" stroke-width="1"/>
+    <line x1="1075" y1="310" x2="970" y2="340" stroke="#2a3a4e" stroke-width="1"/>
+    <line x1="930" y1="235" x2="940" y2="330" stroke="#2a3a4e" stroke-width="1"/>
+    <!-- Small technique nodes -->
+    <circle cx="830" cy="130" r="15" fill="none" stroke="#22d3ee" stroke-width="1"/>
+    <text x="830" y="134" text-anchor="middle" font-family="monospace" font-size="7" fill="#22d3ee">SQLi</text>
+    <circle cx="1000" cy="400" r="15" fill="none" stroke="#22d3ee" stroke-width="1"/>
+    <text x="1000" y="404" text-anchor="middle" font-family="monospace" font-size="7" fill="#22d3ee">ADCS</text>
+    <circle cx="1180" cy="220" r="15" fill="none" stroke="#22d3ee" stroke-width="1"/>
+    <text x="1180" y="224" text-anchor="middle" font-family="monospace" font-size="7" fill="#22d3ee">XSS</text>
+    <circle cx="850" cy="300" r="15" fill="none" stroke="#22d3ee" stroke-width="1"/>
+    <text x="850" y="304" text-anchor="middle" font-family="monospace" font-size="7" fill="#22d3ee">SSRF</text>
+    <line x1="843" y1="140" x2="870" y2="180" stroke="#1a3a5c" stroke-width="1"/>
+    <line x1="985" y1="390" x2="965" y2="365" stroke="#1a3a5c" stroke-width="1"/>
+    <line x1="1167" y1="228" x2="1125" y2="290" stroke="#1a3a5c" stroke-width="1"/>
+    <line x1="863" y1="295" x2="910" y2="230" stroke="#1a3a5c" stroke-width="1"/>
+  </g>
+</svg>

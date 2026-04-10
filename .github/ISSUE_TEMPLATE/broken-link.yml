@@ -1,0 +1,25 @@
+name: Broken Link Report
+description: Report a broken or outdated writeup link
+title: "[Link] Broken link in ..."
+labels: ["broken-link"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Which page has the broken link?
+      placeholder: "machines/easy/README.md"
+    validations:
+      required: true
+  - type: input
+    id: broken-url
+    attributes:
+      label: Broken URL
+      description: The URL that is broken
+    validations:
+      required: true
+  - type: input
+    id: replacement
+    attributes:
+      label: Suggested Replacement
+      description: If you know a working alternative URL

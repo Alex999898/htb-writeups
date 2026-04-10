@@ -20,12 +20,19 @@ search.button: true
 
 heading_anchors: true
 
+mermaid:
+  version: "10.9.0"
+
 plugins:
   - jekyll-include-cache
 
 aux_links:
   "GitHub":
     - "https://github.com/momenbasel/htb-writeups"
+  "Machine Finder":
+    - "https://momenbasel.github.io/htb-writeups/finder/"
+  "Knowledge Graph":
+    - "https://momenbasel.github.io/htb-writeups/graph/"
 
 aux_links_new_tab: true
 
@@ -35,6 +42,10 @@ back_to_top: true
 back_to_top_text: "Back to top"
 
 footer_content: 'Copyright &copy; 2026 <a href="https://github.com/momenbasel">Moamen Basel</a>. Distributed under the <a href="https://github.com/momenbasel/htb-writeups/blob/main/LICENSE">MIT License</a>.'
+
+# Custom head content for extra CSS
+head_extra: |
+  <link rel="stylesheet" href="/htb-writeups/assets/css/custom.css">
 
 callouts:
   warning:

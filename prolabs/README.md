@@ -10,6 +10,31 @@ permalink: /prolabs/
 
 > Enterprise-grade lab environments simulating real corporate networks. Each covers multi-machine attack paths, lateral movement, and domain dominance.
 
+### Diagram Legend
+
+The network topology diagrams below use the following color coding:
+
+```mermaid
+graph LR
+    DC[Domain Controller]:::dc
+    ENTRY[Entry Point]:::entry
+    LINUX[Linux Host]:::linux
+    WIN[Windows Host]:::windows
+    PIVOT[Pivot / Hardened / MSP]:::pivot
+
+    classDef dc fill:#5c1a1a,stroke:#ff4444,color:#fff
+    classDef entry fill:#2d5016,stroke:#9fef00,color:#fff
+    classDef linux fill:#1a3a5c,stroke:#4da6ff,color:#fff
+    classDef windows fill:#3d1a5c,stroke:#b366ff,color:#fff
+    classDef pivot fill:#8b4513,stroke:#ff8c00,color:#fff
+```
+
+- **Red** - Domain Controllers (primary targets for domain dominance)
+- **Green** - Entry points (initial foothold machines)
+- **Blue** - Linux hosts
+- **Purple** - Windows hosts
+- **Orange** - Pivot points, hardened hosts, or MSP infrastructure
+
 ---
 
 ## 1. Dante (Beginner)
@@ -19,6 +44,48 @@ permalink: /prolabs/
 ### Network Architecture
 - **Subnet 1 (172.16.1.0/24):** Entry network accessible via VPN
 - **Subnet 2 (172.16.2.0/24):** Internal network requiring pivoting through bastion host
+
+**Network Topology:**
+
+```mermaid
+graph LR
+    classDef dc fill:#5c1a1a,stroke:#ff4444,color:#fff
+    classDef entry fill:#2d5016,stroke:#9fef00,color:#fff
+    classDef linux fill:#1a3a5c,stroke:#4da6ff,color:#fff
+    classDef windows fill:#3d1a5c,stroke:#b366ff,color:#fff
+    
+    subgraph Internet
+        VPN[VPN Connection]
+    end
+    
+    subgraph Subnet1["Subnet 1 - 172.16.1.0/24"]
+        WEB01[DANTE-WEB-NIX01]:::entry
+        NIX02[DANTE-NIX02]:::linux
+        NIX03[DANTE-NIX03]:::linux
+        NIX04[DANTE-NIX04]:::linux
+        FTP05[DANTE-FTP-NIX05]:::linux
+        SQL01[DANTE-SQL01]:::windows
+        WS01[DANTE-WS01]:::windows
+        WS02[DANTE-WS02]:::windows
+        WS03[DANTE-WS03]:::windows
+        ADMIN01[DANTE-ADMIN01]:::windows
+    end
+    
+    subgraph Subnet2["Subnet 2 - 172.16.2.0/24"]
+        DC01[DANTE-DC01]:::dc
+        HOST1[Hidden Host 1]:::linux
+        HOST2[Hidden Host 2]:::windows
+        HOST3[Hidden Host 3]:::linux
+    end
+    
+    VPN --> WEB01
+    WEB01 --> NIX02
+    WEB01 --> SQL01
+    NIX03 --> DC01
+    SQL01 --> WS01
+    WS02 --> DC01
+    ADMIN01 --> Subnet2
+```
 
 ### Known Machines
 
@@ -65,6 +132,46 @@ permalink: /prolabs/
 - **DMZ:** Internet-facing services
 - **4 Active Directory Domains:** Multi-domain forest with trust relationships
 
+**Network Topology:**
+
+```mermaid
+graph LR
+    classDef dc fill:#5c1a1a,stroke:#ff4444,color:#fff
+    classDef entry fill:#2d5016,stroke:#9fef00,color:#fff
+    classDef dmz fill:#8b4513,stroke:#ff8c00,color:#fff
+    classDef internal fill:#1a3a5c,stroke:#4da6ff,color:#fff
+    
+    subgraph DMZ["DMZ - Internet Facing"]
+        WEB[Web Server]:::entry
+        MAIL[Mail Server]:::dmz
+    end
+    
+    subgraph Domain1["Domain 1"]
+        DC1[Domain Controller 1]:::dc
+        SRV1[Server 1]:::internal
+        WS1[Workstation 1]:::internal
+    end
+    
+    subgraph Domain2["Domain 2"]
+        DC2[Domain Controller 2]:::dc
+        SRV2[Server 2]:::internal
+    end
+    
+    subgraph Domain3["Domain 3"]
+        DC3[Domain Controller 3]:::dc
+        SRV3[Server 3]:::internal
+    end
+    
+    subgraph Domain4["Domain 4"]
+        DC4[Domain Controller 4]:::dc
+    end
+    
+    WEB --> Domain1
+    Domain1 -->|Trust| Domain2
+    Domain2 -->|Trust| Domain3
+    Domain3 -->|Trust| Domain4
+```
+
 ### Techniques Covered
 
 | Category | Specific Techniques |
@@ -101,6 +208,39 @@ permalink: /prolabs/
 
 ### Overview
 Created by Rastamouse (creator of CRTO certification). Simulates a realistic corporate environment where all systems are reasonably patched, forcing reliance on misconfigurations and AD weaknesses rather than CVEs.
+
+**Network Topology:**
+
+```mermaid
+graph TD
+    classDef dc fill:#5c1a1a,stroke:#ff4444,color:#fff
+    classDef entry fill:#2d5016,stroke:#9fef00,color:#fff
+    classDef server fill:#1a3a5c,stroke:#4da6ff,color:#fff
+    classDef workstation fill:#3d1a5c,stroke:#b366ff,color:#fff
+    
+    subgraph External["External / Phishing"]
+        PHISH[Phishing Campaign]:::entry
+    end
+    
+    subgraph Corporate["Corporate Network"]
+        DC[Domain Controller]:::dc
+        FS[File Server]:::server
+        WEB[Web Server]:::server
+        WS1[Workstation 1]:::workstation
+        WS2[Workstation 2]:::workstation
+        WS3[Workstation 3]:::workstation
+        DB[Database Server]:::server
+        MAIL[Mail Server]:::server
+    end
+    
+    PHISH --> WS1
+    WS1 --> FS
+    WS1 --> WEB
+    FS --> WS2
+    WS2 --> DB
+    DB --> WS3
+    WS3 --> DC
+```
 
 ### Techniques Covered
 
@@ -144,6 +284,44 @@ Created by Rastamouse (creator of CRTO certification). Simulates a realistic cor
 - Pure Active Directory - no web apps, no advanced stuff
 - Each domain has corresponding servers and workstations
 
+**Network Topology:**
+
+```mermaid
+graph LR
+    classDef dc fill:#5c1a1a,stroke:#ff4444,color:#fff
+    classDef entry fill:#2d5016,stroke:#9fef00,color:#fff
+    classDef server fill:#1a3a5c,stroke:#4da6ff,color:#fff
+    classDef workstation fill:#3d1a5c,stroke:#b366ff,color:#fff
+    
+    subgraph DomainA["Domain A"]
+        DCA[DC-A]:::dc
+        SRVA1[Server A1]:::server
+        SRVA2[Server A2]:::server
+        WSA1[Workstation A1]:::workstation
+        WSA2[Workstation A2]:::entry
+    end
+    
+    subgraph DomainB["Domain B"]
+        DCB[DC-B]:::dc
+        SRVB1[Server B1]:::server
+        WSB1[Workstation B1]:::workstation
+    end
+    
+    subgraph DomainC["Domain C"]
+        DCC[DC-C]:::dc
+        SRVC1[Server C1]:::server
+        WSC1[Workstation C1]:::workstation
+    end
+    
+    WSA2 --> SRVA1
+    SRVA1 --> DCA
+    DCA -->|Trust| DCB
+    DCB --> SRVB1
+    SRVB1 --> WSB1
+    DCB -->|Trust| DCC
+    DCC --> SRVC1
+```
+
 ### Techniques Covered
 
 | Category | Specific Techniques |
@@ -180,6 +358,40 @@ Created by Rastamouse (creator of CRTO certification). Simulates a realistic cor
 ### Overview
 Immersive enterprise AD environment with advanced infrastructure and strong security posture. Systems are fully patched with hardened OS configurations. AV catches default payloads.
 
+**Network Topology:**
+
+```mermaid
+graph TD
+    classDef dc fill:#5c1a1a,stroke:#ff4444,color:#fff
+    classDef entry fill:#2d5016,stroke:#9fef00,color:#fff
+    classDef hardened fill:#8b4513,stroke:#ff8c00,color:#fff
+    classDef server fill:#1a3a5c,stroke:#4da6ff,color:#fff
+    
+    subgraph Perimeter["Perimeter - Hardened"]
+        PHISH[Phishing Entry]:::entry
+        WEB[Web Server]:::hardened
+    end
+    
+    subgraph ChildDomain["Child Domain"]
+        CDC[Child DC]:::dc
+        SRV1[App Server]:::server
+        SRV2[File Server]:::server
+        WS1[Workstation]:::hardened
+    end
+    
+    subgraph ParentDomain["Parent/Forest Root"]
+        PDC[Root DC]:::dc
+        SRV3[Admin Server]:::server
+    end
+    
+    PHISH --> WS1
+    WEB --> SRV1
+    WS1 --> SRV2
+    SRV2 --> CDC
+    CDC -->|Parent Trust| PDC
+    PDC --> SRV3
+```
+
 ### Techniques Covered
 
 | Category | Specific Techniques |
@@ -212,6 +424,45 @@ Immersive enterprise AD environment with advanced infrastructure and strong secu
 
 ### Overview
 The most challenging ProLab. Simulates a targeted attack by an external threat agent against a Managed Service Provider (MSP). No CVEs are needed - all attacks exploit misconfigurations and trust relationships. Requires C2 framework usage (Cobalt Strike recommended).
+
+**Network Topology:**
+
+```mermaid
+graph LR
+    classDef dc fill:#5c1a1a,stroke:#ff4444,color:#fff
+    classDef entry fill:#2d5016,stroke:#9fef00,color:#fff
+    classDef msp fill:#8b4513,stroke:#ff8c00,color:#fff
+    classDef client fill:#1a3a5c,stroke:#4da6ff,color:#fff
+    
+    subgraph MSP["MSP Network"]
+        ENTRY[Entry Point]:::entry
+        MSP_DC[MSP DC]:::dc
+        MSP_SRV[MSP Tools]:::msp
+    end
+    
+    subgraph ClientA["Client A"]
+        CA_DC[Client A DC]:::dc
+        CA_SRV[Client A Server]:::client
+    end
+    
+    subgraph ClientB["Client B"]
+        CB_DC[Client B DC]:::dc
+        CB_SRV[Client B Server]:::client
+    end
+    
+    subgraph ClientC["Client C"]
+        CC_DC[Client C DC]:::dc
+        CC_SRV[Client C Server]:::client
+    end
+    
+    ENTRY --> MSP_DC
+    MSP_SRV --> CA_DC
+    MSP_SRV --> CB_DC
+    MSP_SRV --> CC_DC
+    CA_DC --> CA_SRV
+    CB_DC --> CB_SRV
+    CC_DC --> CC_SRV
+```
 
 ### Techniques Covered
 

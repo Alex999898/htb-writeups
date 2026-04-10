@@ -1,0 +1,900 @@
+---
+layout: null
+title: Machine Finder
+permalink: /finder/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTB Machine Finder - Interactive Search & Filter</title>
+    <meta name="description" content="Find the perfect Hack The Box machine for your skill level. Filter by difficulty, OS, technique, and certification relevance.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0e17;
+            --bg2: #141d2b;
+            --bg3: #1a2332;
+            --border: #2a3a4e;
+            --text: #a4b1cd;
+            --text-bright: #d4dae5;
+            --green: #9fef00;
+            --green-dim: rgba(159, 239, 0, 0.15);
+            --easy: #4ade80;
+            --medium: #fb923c;
+            --hard: #ef4444;
+            --insane: #a855f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.3rem;
+            color: var(--green);
+            font-weight: 800;
+        }
+
+        .header h1 span {
+            color: var(--text-bright);
+            font-weight: 400;
+        }
+
+        .header-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .header-links a:hover { color: var(--green); }
+
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-pill {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .stat-pill strong {
+            color: var(--green);
+        }
+
+        /* Controls */
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            color: var(--text-bright);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--green);
+        }
+
+        .search-box input::placeholder {
+            color: rgba(164, 177, 205, 0.5);
+        }
+
+        .search-box::before {
+            content: ">";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--green);
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0;
+        }
+
+        .view-toggle button {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .view-toggle button:first-child { border-radius: 8px 0 0 8px; }
+        .view-toggle button:last-child { border-radius: 0 8px 8px 0; }
+        .view-toggle button.active {
+            background: rgba(159, 239, 0, 0.1);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.35rem;
+            align-items: center;
+        }
+
+        .filter-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(164, 177, 205, 0.6);
+            margin-right: 0.25rem;
+        }
+
+        .filter-btn {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.3rem 0.7rem;
+            color: var(--text);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            user-select: none;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--green);
+        }
+
+        .filter-btn.active {
+            background: rgba(159, 239, 0, 0.1);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .filter-btn.easy.active { border-color: var(--easy); color: var(--easy); background: rgba(74, 222, 128, 0.1); }
+        .filter-btn.medium.active { border-color: var(--medium); color: var(--medium); background: rgba(251, 146, 60, 0.1); }
+        .filter-btn.hard.active { border-color: var(--hard); color: var(--hard); background: rgba(239, 68, 68, 0.1); }
+        .filter-btn.insane.active { border-color: var(--insane); color: var(--insane); background: rgba(168, 85, 247, 0.1); }
+
+        .filter-sep {
+            width: 1px;
+            height: 24px;
+            background: var(--border);
+            margin: 0 0.5rem;
+        }
+
+        /* Technique tags filter */
+        .technique-filters {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .technique-filters.expanded {
+            max-height: 500px;
+        }
+
+        .expand-techniques {
+            background: none;
+            border: 1px dashed var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            color: var(--text);
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: all 0.15s;
+        }
+
+        .expand-techniques:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* Results count */
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: rgba(164, 177, 205, 0.6);
+        }
+
+        .results-info strong {
+            color: var(--green);
+        }
+
+        /* Table view */
+        .table-view {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .table-view thead th {
+            background: var(--bg3);
+            padding: 0.7rem 1rem;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(164, 177, 205, 0.7);
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.15s;
+            white-space: nowrap;
+        }
+
+        .table-view thead th:hover {
+            color: var(--green);
+        }
+
+        .table-view thead th.sorted {
+            color: var(--green);
+        }
+
+        .table-view tbody tr {
+            transition: background 0.1s;
+        }
+
+        .table-view tbody tr:hover {
+            background: rgba(159, 239, 0, 0.03);
+        }
+
+        .table-view td {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid rgba(42, 58, 78, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .table-view td a {
+            color: var(--text-bright);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.15s;
+        }
+
+        .table-view td a:hover {
+            color: var(--green);
+        }
+
+        /* Difficulty dot */
+        .diff-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.4rem;
+            vertical-align: middle;
+        }
+
+        .diff-dot.easy { background: var(--easy); }
+        .diff-dot.medium { background: var(--medium); }
+        .diff-dot.hard { background: var(--hard); }
+        .diff-dot.insane { background: var(--insane); }
+
+        /* Technique tags */
+        .tech-tag {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            background: rgba(159, 239, 0, 0.08);
+            border: 1px solid rgba(159, 239, 0, 0.15);
+            color: var(--green);
+            margin: 1px 2px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .tech-tag:hover {
+            background: rgba(159, 239, 0, 0.15);
+            border-color: rgba(159, 239, 0, 0.3);
+        }
+
+        /* Card view */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .machine-card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: border-color 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+
+        .machine-card:hover {
+            border-color: var(--green);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-bright);
+        }
+
+        .card-diff {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .card-diff.easy { background: rgba(74, 222, 128, 0.15); color: var(--easy); }
+        .card-diff.medium { background: rgba(251, 146, 60, 0.15); color: var(--medium); }
+        .card-diff.hard { background: rgba(239, 68, 68, 0.15); color: var(--hard); }
+        .card-diff.insane { background: rgba(168, 85, 247, 0.15); color: var(--insane); }
+
+        .card-meta {
+            font-size: 0.8rem;
+            color: rgba(164, 177, 205, 0.6);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-techniques {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .card-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(42, 58, 78, 0.5);
+        }
+
+        .card-links a {
+            color: var(--green);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: opacity 0.15s;
+        }
+
+        .card-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Cert badges */
+        .cert-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            margin: 1px 2px;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: rgba(164, 177, 205, 0.5);
+        }
+
+        .empty-state h3 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Sort indicator */
+        .sort-arrow {
+            display: inline-block;
+            margin-left: 4px;
+            font-size: 0.6rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header { padding: 1rem; }
+            .container { padding: 1rem; }
+            .controls { grid-template-columns: 1fr; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stats-bar { gap: 0.5rem; }
+            .header-links { display: none; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(159, 239, 0, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>HTB <span>Machine Finder</span></h1>
+        <div class="header-links">
+            <a href="/htb-writeups/">Home</a>
+            <a href="/htb-writeups/graph/">Knowledge Graph</a>
+            <a href="/htb-writeups/attack-paths/">Attack Paths</a>
+            <a href="/htb-writeups/skill-trees/">Skill Trees</a>
+            <a href="https://github.com/momenbasel/htb-writeups">GitHub</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats-bar" id="statsBar"></div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search machines by name, technique, or CVE..." autofocus>
+            </div>
+            <div class="view-toggle">
+                <button class="active" onclick="setView('table')" id="btnTable">Table</button>
+                <button onclick="setView('cards')" id="btnCards">Cards</button>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label>Difficulty</label>
+                <button class="filter-btn easy active" data-filter="difficulty" data-value="Easy" onclick="toggleFilter(this)">Easy</button>
+                <button class="filter-btn medium active" data-filter="difficulty" data-value="Medium" onclick="toggleFilter(this)">Medium</button>
+                <button class="filter-btn hard active" data-filter="difficulty" data-value="Hard" onclick="toggleFilter(this)">Hard</button>
+                <button class="filter-btn insane active" data-filter="difficulty" data-value="Insane" onclick="toggleFilter(this)">Insane</button>
+            </div>
+            <div class="filter-sep"></div>
+            <div class="filter-group">
+                <label>OS</label>
+                <button class="filter-btn active" data-filter="os" data-value="Linux" onclick="toggleFilter(this)">Linux</button>
+                <button class="filter-btn active" data-filter="os" data-value="Windows" onclick="toggleFilter(this)">Windows</button>
+                <button class="filter-btn active" data-filter="os" data-value="Other" onclick="toggleFilter(this)">Other</button>
+            </div>
+            <div class="filter-sep"></div>
+            <div class="filter-group">
+                <label>Cert</label>
+                <button class="filter-btn" data-filter="cert" data-value="OSCP" onclick="toggleFilter(this)">OSCP</button>
+                <button class="filter-btn" data-filter="cert" data-value="CPTS" onclick="toggleFilter(this)">CPTS</button>
+                <button class="filter-btn" data-filter="cert" data-value="CRTO" onclick="toggleFilter(this)">CRTO</button>
+                <button class="filter-btn" data-filter="cert" data-value="CRTE" onclick="toggleFilter(this)">CRTE</button>
+                <button class="filter-btn" data-filter="cert" data-value="eWPT" onclick="toggleFilter(this)">eWPT</button>
+            </div>
+        </div>
+
+        <button class="expand-techniques" onclick="toggleTechniques()">
+            Filter by technique...
+        </button>
+        <div class="technique-filters" id="techFilters"></div>
+
+        <div class="results-info">
+            <span>Showing <strong id="resultCount">0</strong> machines</span>
+            <span id="sortInfo"></span>
+        </div>
+
+        <div id="tableContainer">
+            <table class="table-view">
+                <thead>
+                    <tr>
+                        <th onclick="sortBy('name')">Machine <span class="sort-arrow" id="sort-name"></span></th>
+                        <th onclick="sortBy('os')">OS <span class="sort-arrow" id="sort-os"></span></th>
+                        <th onclick="sortBy('difficulty')">Difficulty <span class="sort-arrow" id="sort-difficulty"></span></th>
+                        <th>Techniques</th>
+                        <th>Certs</th>
+                        <th>Writeup</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="cardContainer" class="card-grid" style="display:none;"></div>
+
+        <div id="emptyState" class="empty-state" style="display:none;">
+            <h3>No machines match your filters</h3>
+            <p>Try broadening your search or removing some filters.</p>
+        </div>
+    </div>
+
+<script>
+// Machine data
+const machines = [
+    // Easy - Linux
+    {name:"Lame",os:"Linux",difficulty:"Easy",techniques:["Samba RCE","CVE-2007-2447"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/04/07/htb-lame.html",year:2017},
+    {name:"Shocker",os:"Linux",difficulty:"Easy",techniques:["Shellshock","CGI","CVE-2014-6271","Sudo Abuse"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/05/25/htb-shocker.html",year:2017},
+    {name:"Nibbles",os:"Linux",difficulty:"Easy",techniques:["CMS Exploit","File Upload","Sudo Abuse"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2018/06/30/htb-nibbles.html",year:2018},
+    {name:"Bashed",os:"Linux",difficulty:"Easy",techniques:["PHP Webshell","Cron Abuse"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2018/04/29/htb-bashed.html",year:2018},
+    {name:"Valentine",os:"Linux",difficulty:"Easy",techniques:["Heartbleed","CVE-2014-0160","tmux Hijack"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2018/07/28/htb-valentine.html",year:2018},
+    {name:"Beep",os:"Linux",difficulty:"Easy",techniques:["LFI","Elastix","Shellshock"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/02/23/htb-beep.html",year:2017},
+    {name:"Blocky",os:"Linux",difficulty:"Easy",techniques:["Java Decompile","Sudo","Minecraft"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/06/30/htb-blocky.html",year:2017},
+    {name:"Mirai",os:"Linux",difficulty:"Easy",techniques:["Default Creds","Raspberry Pi","USB Forensics"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/05/18/htb-mirai.html",year:2017},
+    {name:"Sense",os:"Linux",difficulty:"Easy",techniques:["pfSense RCE"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/03/11/htb-sense.html",year:2017},
+    {name:"Irked",os:"Linux",difficulty:"Easy",techniques:["UnrealIRCd Backdoor","Steganography"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2019/04/27/htb-irked.html",year:2018},
+    {name:"Traverxec",os:"Linux",difficulty:"Easy",techniques:["Nostromo RCE","SSH Key"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/04/18/htb-traverxec.html",year:2019},
+    {name:"Postman",os:"Linux",difficulty:"Easy",techniques:["Redis Exploitation","Webmin"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/03/14/htb-postman.html",year:2019},
+    {name:"OpenAdmin",os:"Linux",difficulty:"Easy",techniques:["OpenNetAdmin RCE","GTFOBins","Nano"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/05/02/htb-openadmin.html",year:2020},
+    {name:"Traceback",os:"Linux",difficulty:"Easy",techniques:["Web Shell","Lua","motd"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/08/15/htb-traceback.html",year:2020},
+    {name:"Cap",os:"Linux",difficulty:"Easy",techniques:["PCAP Analysis","IDOR","Capability Abuse"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/10/02/htb-cap.html",year:2021},
+    {name:"Knife",os:"Linux",difficulty:"Easy",techniques:["PHP 8.1 Backdoor","GTFOBins"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/08/28/htb-knife.html",year:2021},
+    {name:"Dog",os:"Linux",difficulty:"Easy",techniques:["Backdrop CMS","Web Exploitation"],certs:["OSCP"],writeup:"",year:2025},
+    // Easy - Windows
+    {name:"Lame",os:"Linux",difficulty:"Easy",techniques:["Samba RCE","CVE-2007-2447"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/04/07/htb-lame.html",year:2017},
+    {name:"Legacy",os:"Windows",difficulty:"Easy",techniques:["MS08-067","MS17-010","EternalBlue"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2019/02/21/htb-legacy.html",year:2017},
+    {name:"Blue",os:"Windows",difficulty:"Easy",techniques:["EternalBlue","MS17-010"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/05/11/htb-blue.html",year:2017},
+    {name:"Devel",os:"Windows",difficulty:"Easy",techniques:["FTP Upload","ASPX Webshell","Kernel Exploit"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2019/03/05/htb-devel.html",year:2017},
+    {name:"Optimum",os:"Windows",difficulty:"Easy",techniques:["HFS RCE","MS16-098"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/03/17/htb-optimum.html",year:2017},
+    {name:"Arctic",os:"Windows",difficulty:"Easy",techniques:["ColdFusion RCE","JuicyPotato"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/05/19/htb-arctic.html",year:2017},
+    {name:"Grandpa",os:"Windows",difficulty:"Easy",techniques:["IIS WebDAV","Token Impersonation"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/05/28/htb-grandpa.html",year:2017},
+    {name:"Jerry",os:"Windows",difficulty:"Easy",techniques:["Tomcat Default Creds","WAR Deploy"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2018/11/17/htb-jerry.html",year:2018},
+    {name:"Netmon",os:"Windows",difficulty:"Easy",techniques:["PRTG Exploitation","FTP Anonymous"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2019/06/29/htb-netmon.html",year:2019},
+    {name:"Active",os:"Windows",difficulty:"Easy",techniques:["GPP cPassword","Kerberoasting"],certs:["OSCP","CPTS"],writeup:"https://0xdf.gitlab.io/2018/12/08/htb-active.html",year:2018},
+    {name:"Forest",os:"Windows",difficulty:"Easy",techniques:["AS-REP Roasting","DCSync","BloodHound"],certs:["OSCP","CPTS"],writeup:"https://0xdf.gitlab.io/2020/03/21/htb-forest.html",year:2019},
+    {name:"Sauna",os:"Windows",difficulty:"Easy",techniques:["AS-REP Roasting","WinRM","AutoLogon"],certs:["OSCP","CPTS"],writeup:"https://0xdf.gitlab.io/2020/07/18/htb-sauna.html",year:2020},
+    {name:"Buff",os:"Windows",difficulty:"Easy",techniques:["Gym Management RCE","CloudMe BOF"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/11/21/htb-buff.html",year:2020},
+    {name:"Love",os:"Windows",difficulty:"Easy",techniques:["SSRF","AlwaysInstallElevated"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2021/08/07/htb-love.html",year:2021},
+    // Medium - Linux
+    {name:"Cronos",os:"Linux",difficulty:"Medium",techniques:["DNS Zone Transfer","SQL Injection","Cron Abuse"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/04/14/htb-cronos.html",year:2017},
+    {name:"SolidState",os:"Linux",difficulty:"Medium",techniques:["Apache James RCE","Cron Abuse"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2020/04/30/htb-solidstate.html",year:2017},
+    {name:"Poison",os:"Linux",difficulty:"Medium",techniques:["LFI","VNC Tunneling"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2018/09/08/htb-poison.html",year:2018},
+    {name:"DevOops",os:"Linux",difficulty:"Medium",techniques:["XXE","Git Secrets"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2018/10/13/htb-devoops.html",year:2018},
+    {name:"Pit",os:"Linux",difficulty:"Medium",techniques:["SNMP Walk","Cockpit","SELinux"],certs:[],writeup:"https://0xdf.gitlab.io/2021/09/25/htb-pit.html",year:2021},
+    {name:"Pikaboo",os:"Linux",difficulty:"Medium",techniques:["Nginx Off-By-Slash","LDAP Injection"],certs:[],writeup:"https://0xdf.gitlab.io/2021/12/04/htb-pikaboo.html",year:2021},
+    {name:"Pandora",os:"Linux",difficulty:"Medium",techniques:["SNMP","Pandora FMS SQLi"],certs:[],writeup:"https://0xdf.gitlab.io/2022/05/21/htb-pandora.html",year:2022},
+    {name:"Late",os:"Linux",difficulty:"Medium",techniques:["SSTI","OCR"],certs:[],writeup:"https://0xdf.gitlab.io/2022/08/13/htb-late.html",year:2022},
+    {name:"Awkward",os:"Linux",difficulty:"Medium",techniques:["SSRF","JWT","Express"],certs:["eWPT"],writeup:"https://0xdf.gitlab.io/2023/02/11/htb-awkward.html",year:2023},
+    {name:"Sandworm",os:"Linux",difficulty:"Medium",techniques:["SSTI in GPG","Firejail Escape"],certs:["eWPT"],writeup:"https://0xdf.gitlab.io/2023/11/18/htb-sandworm.html",year:2023},
+    // Medium - Windows
+    {name:"Bastard",os:"Windows",difficulty:"Medium",techniques:["Drupal RCE","JuicyPotato"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2019/03/12/htb-bastard.html",year:2017},
+    {name:"Bounty",os:"Windows",difficulty:"Medium",techniques:["IIS Upload Bypass","JuicyPotato"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2018/10/27/htb-bounty.html",year:2018},
+    {name:"Jeeves",os:"Windows",difficulty:"Medium",techniques:["Jenkins Script Console","KeePass"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2022/04/14/htb-jeeves.html",year:2018},
+    {name:"Conceal",os:"Windows",difficulty:"Medium",techniques:["IPSec VPN","SNMP","JuicyPotato"],certs:["OSCP"],writeup:"https://0xdf.gitlab.io/2019/05/18/htb-conceal.html",year:2019},
+    {name:"Sniper",os:"Windows",difficulty:"Medium",techniques:["RFI","CHM Exploitation"],certs:[],writeup:"https://0xdf.gitlab.io/2020/03/28/htb-sniper.html",year:2019},
+    {name:"Worker",os:"Windows",difficulty:"Medium",techniques:["Azure DevOps","SVN"],certs:[],writeup:"https://0xdf.gitlab.io/2021/01/30/htb-worker.html",year:2020},
+    {name:"Monteverde",os:"Windows",difficulty:"Medium",techniques:["Azure AD","Password Spraying"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2020/06/13/htb-monteverde.html",year:2020},
+    {name:"Resolute",os:"Windows",difficulty:"Medium",techniques:["DNS Admin DLL Injection"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2020/05/30/htb-resolute.html",year:2020},
+    {name:"Cascade",os:"Windows",difficulty:"Medium",techniques:["LDAP Enumeration",".NET Reversing","AD Recycle Bin"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2020/07/25/htb-cascade.html",year:2020},
+    {name:"Intelligence",os:"Windows",difficulty:"Medium",techniques:["DNS Records","GMSA","Constrained Delegation"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2021/11/27/htb-intelligence.html",year:2021},
+    {name:"StreamIO",os:"Windows",difficulty:"Medium",techniques:["SQL Injection","MSSQL","LAPS"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2022/09/17/htb-streamio.html",year:2022},
+    {name:"Escape",os:"Windows",difficulty:"Medium",techniques:["MSSQL","ADCS ESC1"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2023/06/17/htb-escape.html",year:2023},
+    // Hard - Windows
+    {name:"Reel",os:"Windows",difficulty:"Hard",techniques:["Phishing","AppLocker Bypass","AD ACL"],certs:["CRTO"],writeup:"https://0xdf.gitlab.io/2018/11/10/htb-reel.html",year:2018},
+    {name:"Mantis",os:"Windows",difficulty:"Hard",techniques:["Kerberos MS14-068","AD"],certs:["CRTO"],writeup:"https://0xdf.gitlab.io/2020/09/03/htb-mantis.html",year:2017},
+    {name:"Sizzle",os:"Windows",difficulty:"Hard",techniques:["ADCS","Kerberos","CLM Bypass"],certs:["CRTO"],writeup:"https://0xdf.gitlab.io/2019/06/01/htb-sizzle.html",year:2019},
+    {name:"Multimaster",os:"Windows",difficulty:"Hard",techniques:["SQL Injection","DLL Injection","AD"],certs:["CRTO","CRTE"],writeup:"https://0xdf.gitlab.io/2020/09/19/htb-multimaster.html",year:2020},
+    {name:"APT",os:"Windows",difficulty:"Hard",techniques:["IPv6","RPC","Domain Recon"],certs:["CRTO"],writeup:"https://0xdf.gitlab.io/2021/04/10/htb-apt.html",year:2021},
+    {name:"Blackfield",os:"Windows",difficulty:"Hard",techniques:["AS-REP Roasting","Backup Operators"],certs:["CPTS","CRTE"],writeup:"https://0xdf.gitlab.io/2020/10/03/htb-blackfield.html",year:2020},
+    {name:"Object",os:"Windows",difficulty:"Hard",techniques:["AD ACL Abuse","GenericWrite"],certs:["CRTE"],writeup:"https://0xdf.gitlab.io/2022/02/28/htb-object.html",year:2022},
+    {name:"Cerberus",os:"Windows",difficulty:"Hard",techniques:["ADCS","Cross-Domain Trusts"],certs:["CRTE"],writeup:"https://0xdf.gitlab.io/2023/07/29/htb-cerberus.html",year:2023},
+    {name:"Rebound",os:"Windows",difficulty:"Hard",techniques:["Advanced Kerberos","RBCD"],certs:["CRTE"],writeup:"https://0xdf.gitlab.io/2024/03/30/htb-rebound.html",year:2024},
+    {name:"Search",os:"Windows",difficulty:"Hard",techniques:["Kerberoasting","GMSA","pfx Certificate"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2022/04/30/htb-search.html",year:2022},
+    {name:"Absolute",os:"Windows",difficulty:"Hard",techniques:["LDAP","Shadow Credentials","BloodHound"],certs:["CRTE"],writeup:"https://0xdf.gitlab.io/2023/05/27/htb-absolute.html",year:2023},
+    {name:"Vintage",os:"Windows",difficulty:"Hard",techniques:["Pure AD","Kerberoasting"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2025/04/26/htb-vintage.html",year:2025},
+    {name:"Certificate",os:"Windows",difficulty:"Hard",techniques:["ADCS Certificate Abuse"],certs:["CPTS"],writeup:"https://0xdf.gitlab.io/2025/10/04/htb-certificate.html",year:2025},
+    {name:"Hathor",os:"Windows",difficulty:"Hard",techniques:["Cross-Forest","PrintNightmare"],certs:["CRTE"],writeup:"https://0xdf.gitlab.io/2022/07/30/htb-hathor.html",year:2022},
+    {name:"Anubis",os:"Windows",difficulty:"Hard",techniques:["Certify","ADCS","Container Escape"],certs:["CRTE"],writeup:"https://0xdf.gitlab.io/2022/02/12/htb-anubis.html",year:2022},
+    // Hard - Linux
+    {name:"Talkative",os:"Linux",difficulty:"Hard",techniques:["Rocket.Chat Exploit","Docker Escape"],certs:["eWPT"],writeup:"https://0xdf.gitlab.io/2022/08/27/htb-talkative.html",year:2022},
+    {name:"Forgot",os:"Linux",difficulty:"Hard",techniques:["Redis Cache Poisoning","Password Reset"],certs:["eWPT"],writeup:"https://0xdf.gitlab.io/2023/03/04/htb-forgot.html",year:2023},
+    {name:"Bagel",os:"Linux",difficulty:"Hard",techniques:[".NET WebSocket","Deserialization"],certs:["eWPT"],writeup:"https://0xdf.gitlab.io/2023/06/03/htb-bagel.html",year:2023},
+    {name:"Clicker",os:"Linux",difficulty:"Hard",techniques:["NFS","PHP SQLi","LFI Chain"],certs:["eWPT"],writeup:"https://0xdf.gitlab.io/2024/01/27/htb-clicker.html",year:2024},
+    // Insane
+    {name:"Sink",os:"Linux",difficulty:"Insane",techniques:["HTTP Request Smuggling","HAProxy","AWS Secrets"],certs:[],writeup:"https://0xdf.gitlab.io/2021/09/18/htb-sink.html",year:2021},
+    {name:"Response",os:"Linux",difficulty:"Insane",techniques:["Custom Crypto","SSRF Chain"],certs:[],writeup:"https://0xdf.gitlab.io/2023/04/08/htb-response.html",year:2023},
+    {name:"Sekhmet",os:"Windows",difficulty:"Insane",techniques:["ADCS","Golden Certificate"],certs:[],writeup:"https://0xdf.gitlab.io/2023/03/25/htb-sekhmet.html",year:2023},
+    {name:"Fulcrum",os:"Linux",difficulty:"Insane",techniques:["XXE","Multi-Network Pivoting","PowerShell"],certs:[],writeup:"https://0xdf.gitlab.io/2022/01/22/htb-fulcrum.html",year:2018},
+    {name:"Stacked",os:"Linux",difficulty:"Insane",techniques:["AWS Lambda","XSS","LocalStack"],certs:[],writeup:"https://0xdf.gitlab.io/2022/02/19/htb-stacked.html",year:2021},
+];
+
+// Deduplicate by name (Lame was added twice)
+const seen = new Set();
+const uniqueMachines = machines.filter(m => {
+    const key = m.name + m.os;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+});
+
+// State
+let currentView = 'table';
+let currentSort = { field: 'name', dir: 'asc' };
+let activeFilters = {
+    difficulty: new Set(['Easy', 'Medium', 'Hard', 'Insane']),
+    os: new Set(['Linux', 'Windows', 'Other']),
+    cert: new Set(),
+    technique: new Set()
+};
+
+// Collect all techniques
+const allTechniques = [...new Set(uniqueMachines.flatMap(m => m.techniques))].sort();
+
+// Init
+function init() {
+    renderStats();
+    renderTechniqueFilters();
+    render();
+    document.getElementById('searchInput').addEventListener('input', render);
+}
+
+function renderStats() {
+    const bar = document.getElementById('statsBar');
+    const total = uniqueMachines.length;
+    const linux = uniqueMachines.filter(m => m.os === 'Linux').length;
+    const windows = uniqueMachines.filter(m => m.os === 'Windows').length;
+    const easy = uniqueMachines.filter(m => m.difficulty === 'Easy').length;
+    const med = uniqueMachines.filter(m => m.difficulty === 'Medium').length;
+    const hard = uniqueMachines.filter(m => m.difficulty === 'Hard').length;
+    const ins = uniqueMachines.filter(m => m.difficulty === 'Insane').length;
+    bar.innerHTML = `
+        <div class="stat-pill"><strong>${total}</strong> Total</div>
+        <div class="stat-pill"><strong>${linux}</strong> Linux</div>
+        <div class="stat-pill"><strong>${windows}</strong> Windows</div>
+        <div class="stat-pill"><strong>${easy}</strong> Easy</div>
+        <div class="stat-pill"><strong>${med}</strong> Medium</div>
+        <div class="stat-pill"><strong>${hard}</strong> Hard</div>
+        <div class="stat-pill"><strong>${ins}</strong> Insane</div>
+    `;
+}
+
+function renderTechniqueFilters() {
+    const container = document.getElementById('techFilters');
+    container.innerHTML = allTechniques.map(t =>
+        `<button class="filter-btn" data-filter="technique" data-value="${t}" onclick="toggleFilter(this)">${t}</button>`
+    ).join('');
+}
+
+function toggleTechniques() {
+    document.getElementById('techFilters').classList.toggle('expanded');
+}
+
+function toggleFilter(btn) {
+    const filter = btn.dataset.filter;
+    const value = btn.dataset.value;
+
+    if (filter === 'cert' || filter === 'technique') {
+        if (activeFilters[filter].has(value)) {
+            activeFilters[filter].delete(value);
+            btn.classList.remove('active');
+        } else {
+            activeFilters[filter].add(value);
+            btn.classList.add('active');
+        }
+    } else {
+        if (activeFilters[filter].has(value)) {
+            activeFilters[filter].delete(value);
+            btn.classList.remove('active');
+        } else {
+            activeFilters[filter].add(value);
+            btn.classList.add('active');
+        }
+    }
+    render();
+}
+
+function getFiltered() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+
+    return uniqueMachines.filter(m => {
+        // Difficulty filter
+        if (!activeFilters.difficulty.has(m.difficulty)) return false;
+
+        // OS filter
+        const osGroup = (m.os === 'Linux' || m.os === 'Windows') ? m.os : 'Other';
+        if (!activeFilters.os.has(osGroup)) return false;
+
+        // Cert filter (if any active, machine must match at least one)
+        if (activeFilters.cert.size > 0) {
+            if (!m.certs.some(c => activeFilters.cert.has(c))) return false;
+        }
+
+        // Technique filter (if any active, machine must match at least one)
+        if (activeFilters.technique.size > 0) {
+            if (!m.techniques.some(t => activeFilters.technique.has(t))) return false;
+        }
+
+        // Search
+        if (query) {
+            const searchable = [m.name, m.os, m.difficulty, ...m.techniques, ...m.certs].join(' ').toLowerCase();
+            if (!searchable.includes(query)) return false;
+        }
+
+        return true;
+    });
+}
+
+function sortMachines(list) {
+    const diffOrder = { Easy: 0, Medium: 1, Hard: 2, Insane: 3 };
+    return [...list].sort((a, b) => {
+        let va, vb;
+        if (currentSort.field === 'difficulty') {
+            va = diffOrder[a.difficulty];
+            vb = diffOrder[b.difficulty];
+        } else if (currentSort.field === 'year') {
+            va = a.year;
+            vb = b.year;
+        } else {
+            va = a[currentSort.field].toLowerCase();
+            vb = b[currentSort.field].toLowerCase();
+        }
+        if (va < vb) return currentSort.dir === 'asc' ? -1 : 1;
+        if (va > vb) return currentSort.dir === 'asc' ? 1 : -1;
+        return 0;
+    });
+}
+
+function sortBy(field) {
+    if (currentSort.field === field) {
+        currentSort.dir = currentSort.dir === 'asc' ? 'desc' : 'asc';
+    } else {
+        currentSort.field = field;
+        currentSort.dir = 'asc';
+    }
+    // Update sort indicators
+    document.querySelectorAll('.sort-arrow').forEach(el => el.textContent = '');
+    const arrow = document.getElementById('sort-' + field);
+    if (arrow) arrow.textContent = currentSort.dir === 'asc' ? '\u25B2' : '\u25BC';
+    document.querySelectorAll('.table-view th').forEach(th => th.classList.remove('sorted'));
+    if (arrow) arrow.parentElement.classList.add('sorted');
+    render();
+}
+
+function render() {
+    const filtered = sortMachines(getFiltered());
+    document.getElementById('resultCount').textContent = filtered.length;
+
+    if (filtered.length === 0) {
+        document.getElementById('emptyState').style.display = 'block';
+        document.getElementById('tableContainer').style.display = 'none';
+        document.getElementById('cardContainer').style.display = 'none';
+        return;
+    }
+
+    document.getElementById('emptyState').style.display = 'none';
+
+    if (currentView === 'table') {
+        document.getElementById('tableContainer').style.display = 'block';
+        document.getElementById('cardContainer').style.display = 'none';
+        renderTable(filtered);
+    } else {
+        document.getElementById('tableContainer').style.display = 'none';
+        document.getElementById('cardContainer').style.display = 'grid';
+        renderCards(filtered);
+    }
+}
+
+function renderTable(list) {
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = list.map(m => `
+        <tr>
+            <td><a href="${m.writeup || '#'}" target="_blank" rel="noopener">${m.name}</a></td>
+            <td>${m.os}</td>
+            <td><span class="diff-dot ${m.difficulty.toLowerCase()}"></span>${m.difficulty}</td>
+            <td>${m.techniques.map(t => `<span class="tech-tag" onclick="filterByTech('${t}')">${t}</span>`).join('')}</td>
+            <td>${m.certs.map(c => `<span class="cert-badge">${c}</span>`).join('')}</td>
+            <td>${m.writeup ? `<a href="${m.writeup}" target="_blank" rel="noopener">0xdf</a>` : '-'}</td>
+        </tr>
+    `).join('');
+}
+
+function renderCards(list) {
+    const container = document.getElementById('cardContainer');
+    container.innerHTML = list.map(m => `
+        <div class="machine-card" onclick="if('${m.writeup}')window.open('${m.writeup}','_blank')">
+            <div class="card-header">
+                <span class="card-name">${m.name}</span>
+                <span class="card-diff ${m.difficulty.toLowerCase()}">${m.difficulty}</span>
+            </div>
+            <div class="card-meta">${m.os} | ${m.year}</div>
+            <div class="card-techniques">
+                ${m.techniques.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+            </div>
+            ${m.certs.length ? `<div class="card-links">${m.certs.map(c => `<span class="cert-badge">${c}</span>`).join('')}</div>` : ''}
+        </div>
+    `).join('');
+}
+
+function filterByTech(tech) {
+    activeFilters.technique.add(tech);
+    // Activate the button
+    document.querySelectorAll('[data-filter="technique"]').forEach(btn => {
+        if (btn.dataset.value === tech) btn.classList.add('active');
+    });
+    // Expand technique filters
+    document.getElementById('techFilters').classList.add('expanded');
+    render();
+}
+
+function setView(view) {
+    currentView = view;
+    document.getElementById('btnTable').classList.toggle('active', view === 'table');
+    document.getElementById('btnCards').classList.toggle('active', view === 'cards');
+    render();
+}
+
+// Keyboard shortcut: / to focus search
+document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== document.getElementById('searchInput')) {
+        e.preventDefault();
+        document.getElementById('searchInput').focus();
+    }
+    if (e.key === 'Escape') {
+        document.getElementById('searchInput').blur();
+    }
+});
+
+init();
+</script>
+</body>
+</html>

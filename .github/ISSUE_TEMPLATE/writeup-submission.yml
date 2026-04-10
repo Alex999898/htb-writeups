@@ -1,0 +1,52 @@
+name: Writeup Submission
+description: Submit a writeup for an HTB machine or challenge
+title: "[Writeup] Machine/Challenge Name"
+labels: ["writeup-submission"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Content Type
+      options:
+        - Machine
+        - Challenge
+        - Sherlock
+        - ProLab
+        - CTF Event
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: Machine, challenge, or lab name
+      placeholder: e.g., "Forest"
+    validations:
+      required: true
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - Easy
+        - Medium
+        - Hard
+        - Insane
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Writeup URL
+      description: Link to your writeup (blog post, GitHub, etc.)
+      placeholder: "https://yourblog.com/htb-forest"
+    validations:
+      required: true
+  - type: textarea
+    id: techniques
+    attributes:
+      label: Key Techniques
+      description: What techniques does this writeup cover?
+      placeholder: "AS-REP Roasting, DCSync, BloodHound"
+    validations:
+      required: true

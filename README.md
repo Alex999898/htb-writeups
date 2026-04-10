@@ -20,6 +20,19 @@
 
 **Why this repo?** Unlike scattered blog posts and single-author collections, this is a **structured, searchable index** of the entire HTB ecosystem - machines from 2017 to 2026, every CTF event, every challenge category, every ProLab - cross-referenced by technique, difficulty, OS, and certification relevance. Whether you're preparing for **OSCP**, **CPTS**, **CRTO**, or just sharpening your skills, start here.
 
+> **[Browse the site](https://momenbasel.github.io/htb-writeups/)** for the best experience - interactive tools, search, and dark theme.
+
+---
+
+## Interactive Tools
+
+|  | Tool | Description |
+|--|------|-------------|
+| **[Machine Finder](https://momenbasel.github.io/htb-writeups/finder/)** | Search & Filter | Find machines by difficulty, OS, technique, CVE, or certification. Table and card views with real-time filtering. |
+| **[Knowledge Graph](https://momenbasel.github.io/htb-writeups/graph/)** | Visual Explorer | Interactive D3.js force-directed graph mapping 70+ machines to 40+ techniques and 5 certifications. |
+| **[Attack Paths](https://momenbasel.github.io/htb-writeups/attack-paths/)** | Flowcharts | Mermaid diagrams showing complete attack chains for 25+ machines - from recon to root. |
+| **[Skill Trees](https://momenbasel.github.io/htb-writeups/skill-trees/)** | Progression Maps | Visual learning paths for AD attacks, web exploitation, Linux/Windows privesc, and cert preparation. |
+
 ---
 
 ## What's Inside
@@ -28,9 +41,9 @@
 |---------|-------------|-------|
 | [Machines](#machines) | Boot2root walkthroughs (Easy to Insane) | 300+ |
 | [Challenges](#challenges) | CTF-style challenges across 12 categories | 400+ |
-| [ProLabs](#prolabs) | Enterprise-grade lab walkthroughs | 6 |
-| [Sherlocks](#sherlocks) | DFIR & Blue Team investigations | 38+ |
-| [CTF Events](#ctf-events) | Official HTB CTF competition writeups | 6 events |
+| [ProLabs](#prolabs) | Enterprise-grade lab walkthroughs with network topology diagrams | 6 |
+| [Sherlocks](#sherlocks) | DFIR & Blue Team investigations | 70+ |
+| [CTF Events](#ctf-events) | Official HTB CTF competition writeups | 14 events |
 | [Endgames](#endgames) | Multi-machine scenario walkthroughs | 5 |
 | [Fortresses](#fortresses) | Multi-flag single-host challenges | 6 |
 | [Resources](#resources) | Tools, cheatsheets, cert prep, methodology | 10 guides |
