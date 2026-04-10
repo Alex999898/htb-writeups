@@ -174,16 +174,22 @@ DFIR (Digital Forensics & Incident Response) investigation labs. Blue team scena
 
 ### Featured Sherlocks
 
-| Name | Difficulty | Focus Area |
-|------|-----------|------------|
-| Crown Jewel 1 | Medium | AD Attack Investigation, NTDS.dit Analysis |
-| Crown Jewel 2 | Medium | Lateral Movement Detection |
-| Noted | Easy | Endpoint Forensics |
-| Bumblebee | Medium | Malware Analysis |
-| OpTinselTrace | Hard | APT Campaign Investigation |
-| Knock Knock | Easy | Network Forensics |
-| Noxious | Medium | DNS Poisoning Investigation |
-| Tracer | Hard | Advanced Threat Hunting |
+| Name | Difficulty | Focus Area | Writeup |
+|------|-----------|------------|---------|
+| Meerkat | Easy | Suricata IDS, Credential Stuffing, CVE-2022-25237 | [0xdf](https://0xdf.gitlab.io/2024/04/23/htb-sherlock-meerkat.html) |
+| Brutus | Easy | SSH Brute Force, auth.log Analysis | [0xdf](https://0xdf.gitlab.io/2024/04/09/htb-sherlock-brutus.html) |
+| Noted | Easy | Notepad++ Artifacts, Data Extortion | [0xdf](https://0xdf.gitlab.io/2024/06/13/htb-sherlock-noted.html) |
+| Knock Knock | Easy | PCAP, FTP, Port Knocking, GonnaCry Ransomware | [0xdf](https://0xdf.gitlab.io/2023/12/04/htb-sherlock-knock-knock.html) |
+| Bumblebee | Easy | phpBB SQLite, Access Log Analysis | [0xdf](https://0xdf.gitlab.io/2024/05/22/htb-sherlock-bumblebee.html) |
+| Crown Jewel-1 | Medium | NTDS.dit Dump, Volume Shadow Copy Service | [Medium](https://stumblesec.com/hackthebox-crownjewel-1-sherlock-walkthrough-2efb81522f2c) |
+| Noxious | Medium | LLMNR Poisoning, Rogue Device Detection | [0xdf](https://0xdf.gitlab.io/2024/09/04/htb-sherlock-noxious.html) |
+| Subatomic | Medium | Electron Malware, Discord Hijacking | [0xdf](https://0xdf.gitlab.io/2024/04/18/htb-sherlock-subatomic.html) |
+| Nubilum-1 | Medium | AWS CloudTrail, PoshC2, Cloud Forensics | [0xdf](https://0xdf.gitlab.io/2024/05/30/htb-sherlock-nubilum-1.html) |
+| MisCloud | Medium | GCP Breach, Gitea Vulnerability | [Medium](https://prajshete17.medium.com/writeup-htb-sherlocks-miscloud-medium-93831e2fbf42) |
+| OpTinselTrace (1-5) | Hard | Full APT Campaign Investigation (Christmas 2023) | [Medium](https://medium.com/@ari.null/optinseltrace-3-hack-the-box-sherlock-writeup-dae64f3512fe) |
+| APTNightmare | Hard | Advanced Persistent Threat Investigation | [GitHub](https://github.com/jon-brandy/hackthebox/blob/main/Categories/Sherlocks/APTNightmare/README.md) |
+
+See the [full Sherlocks index](sherlocks/README.md) for 70+ Sherlocks with writeup links.
 
 ---
 
