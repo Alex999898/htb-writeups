@@ -132,18 +132,18 @@ CTF-style challenges organized by category. Each writeup includes the challenge 
 
 | Category | Path | Count | Key Skills |
 |----------|------|-------|------------|
-| Web | [`challenges/web/`](challenges/web/) | 15+ | XSS, SQLi, SSTI, SSRF, Deserialization |
-| Crypto | [`challenges/crypto/`](challenges/crypto/) | 10+ | RSA, AES, ECC, Custom Ciphers |
-| Forensics | [`challenges/forensics/`](challenges/forensics/) | 10+ | Memory Analysis, Disk Forensics, Network PCAP |
-| Reversing | [`challenges/reversing/`](challenges/reversing/) | 10+ | x86/x64, ARM, .NET, Java, Obfuscation |
-| Pwn | [`challenges/pwn/`](challenges/pwn/) | 8+ | Stack/Heap Overflow, ROP, Format Strings |
-| Mobile | [`challenges/mobile/`](challenges/mobile/) | 5+ | Android APK, iOS, Frida, Smali |
-| Hardware | [`challenges/hardware/`](challenges/hardware/) | 3+ | UART, SPI, Firmware Extraction |
-| OSINT | [`challenges/osint/`](challenges/osint/) | 5+ | Geolocation, Social Media, Metadata |
-| Misc | [`challenges/misc/`](challenges/misc/) | 5+ | Scripting, Logic, Encoding |
-| Stego | [`challenges/stego/`](challenges/stego/) | 5+ | Image, Audio, LSB, Steghide |
-| Blockchain | [`challenges/blockchain/`](challenges/blockchain/) | 3+ | Smart Contracts, Solidity, DeFi |
-| AI/ML | [`challenges/ai-ml/`](challenges/ai-ml/) | 3+ | Adversarial ML, Model Exploitation |
+| Web | [`challenges/web/`](challenges/web/) | 75+ | XSS, SQLi, SSTI, SSRF, Deserialization, JWT, GraphQL |
+| Crypto | [`challenges/crypto/`](challenges/crypto/) | 93+ | RSA, AES, ECC, Padding Oracle, PRNG, Lattice Attacks |
+| Forensics | [`challenges/forensics/`](challenges/forensics/) | 33+ | Memory Analysis, Disk Forensics, Network PCAP, Malware |
+| Reversing | [`challenges/reversing/`](challenges/reversing/) | 44+ | x86/x64, .NET, Python, Angr, Anti-Debug, VM |
+| Pwn | [`challenges/pwn/`](challenges/pwn/) | 61+ | Stack/Heap Overflow, ROP, SROP, Kernel, tcache |
+| Mobile | [`challenges/mobile/`](challenges/mobile/) | 10+ | Android APK, Frida, Smali, Certificate Pinning |
+| Hardware | [`challenges/hardware/`](challenges/hardware/) | 11+ | UART, SPI, Firmware, VHDL, RF Analysis |
+| OSINT | [`challenges/osint/`](challenges/osint/) | 12+ | Geolocation, Social Media, DNS, Metadata |
+| Misc | [`challenges/misc/`](challenges/misc/) | 35+ | Scripting, Logic, Encoding, Pickle, Pyjail |
+| Stego | [`challenges/stego/`](challenges/stego/) | 12+ | Image, Audio, LSB, Steghide, ImageMagick |
+| Blockchain | [`challenges/blockchain/`](challenges/blockchain/) | 10+ | Solidity, Smart Contracts, ERC-721, ECDSA |
+| AI/ML | [`challenges/ai-ml/`](challenges/ai-ml/) | 5+ | Adversarial ML, Prompt Injection, LLM Bypass |
 
 ---
 
