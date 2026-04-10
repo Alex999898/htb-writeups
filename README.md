@@ -68,20 +68,20 @@ Writeups for retired HTB machines organized by difficulty. Each writeup includes
 | Machine | OS | Difficulty | Key Techniques | Date |
 |---------|----|------------|----------------|------|
 | [DarkZero](https://0xdf.gitlab.io/2026/04/04/htb-darkzero.html) | Windows | Hard | Cross-Forest Trust, AD Abuse | Apr 2026 |
-| [Snapped](https://0xdf.gitlab.io/2026/04/01/htb-snapped.html) | Linux | Medium | Nginx UI RCE, Static Site Exploitation | Mar 2026 |
+| [Snapped](https://0xdf.gitlab.io/2026/04/01/htb-snapped.html) | Linux | Hard | Nginx UI RCE, Static Site Exploitation | Mar 2026 |
 | [Browsed](https://0xdf.gitlab.io/2026/03/28/htb-browsed.html) | Linux | Medium | Browser Extension Exploitation, Headless Chrome | Mar 2026 |
 | [Previous](https://0xdf.gitlab.io/2026/01/10/htb-previous.html) | Linux | Medium | NextJS Exploitation, Framework Abuse | Jan 2026 |
 | [Retire](machines/hard/) | Windows | Hard | Active Directory, Kerberos Abuse | Jan 2026 |
 | [Fries](machines/hard/) | Linux | Hard | Web Exploitation, Custom Exploitation | Nov 2025 |
 | [NanoCorp](machines/hard/) | Linux | Hard | Custom Protocol, Binary Analysis | Nov 2025 |
 | [Hercules](machines/insane/) | Linux | Insane | Multi-Stage Exploitation | Oct 2025 |
-| [Signed](https://0xdf.gitlab.io/2026/02/07/htb-signed.html) | Linux | Medium | Code Signing Bypass, Certificate Abuse | Oct 2025 |
-| [University](https://0xdf.gitlab.io/2025/08/09/htb-university.html) | Linux | Insane | Multi-Vector Attack, Complex Chain | Aug 2025 |
+| [Signed](https://0xdf.gitlab.io/2026/02/07/htb-signed.html) | Windows | Medium | Code Signing Bypass, Certificate Abuse | Oct 2025 |
+| [University](https://0xdf.gitlab.io/2025/08/09/htb-university.html) | Windows | Insane | Multi-Vector Attack, Complex Chain | Aug 2025 |
 | [Dog](https://0xdf.gitlab.io/2025/07/12/htb-dog.html) | Linux | Easy | Backdrop CMS, Web Exploitation | Jul 2025 |
 | [Mirage](https://0xdf.gitlab.io/2025/11/22/htb-mirage.html) | Windows | Hard | Active Directory, ADCS | Jul 2025 |
-| [Voleur](https://0xdf.gitlab.io/2025/11/01/htb-voleur.html) | Linux | Medium | Data Exfiltration, Custom Exploitation | Jul 2025 |
-| [RustyKey](https://0xdf.gitlab.io/2025/11/08/htb-rustykey.html) | Linux | Hard | Rust Binary Exploitation | Jun 2025 |
-| [TombWatcher](https://0xdf.gitlab.io/2025/10/11/htb-tombwatcher.html) | Linux | Medium | Custom Service Exploitation | Jun 2025 |
+| [Voleur](https://0xdf.gitlab.io/2025/11/01/htb-voleur.html) | Windows | Medium | Data Exfiltration, Custom Exploitation | Jul 2025 |
+| [RustyKey](https://0xdf.gitlab.io/2025/11/08/htb-rustykey.html) | Windows | Hard | Rust Binary Exploitation | Jun 2025 |
+| [TombWatcher](https://0xdf.gitlab.io/2025/10/11/htb-tombwatcher.html) | Windows | Medium | Custom Service Exploitation | Jun 2025 |
 | [Haze](https://0xdf.gitlab.io/2025/06/28/htb-haze.html) | Windows | Hard | Splunk Enterprise Exploitation | Jun 2025 |
 | [Certificate](https://0xdf.gitlab.io/2025/10/04/htb-certificate.html) | Windows | Hard | ADCS, Certificate Template Abuse | May 2025 |
 | [Vintage](https://0xdf.gitlab.io/2025/04/26/htb-vintage.html) | Windows | Hard | Pure Active Directory, Kerberoasting | Apr 2025 |
@@ -116,7 +116,7 @@ Writeups for retired HTB machines organized by difficulty. Each writeup includes
 | Dog | Easy | Backdrop CMS RCE |
 | Browsed | Medium | Browser Extension RCE |
 | Previous | Medium | NextJS Framework Exploitation |
-| Snapped | Medium | Nginx UI Admin Panel RCE |
+| Snapped | Hard | Nginx UI Admin Panel RCE |
 | Fries | Hard | Custom Web App Exploitation |
 
 </details>
