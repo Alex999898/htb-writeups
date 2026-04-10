@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Windows Enumeration"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 10
+permalink: /resources/cheatsheets/windows-enumeration/
+---
+
 # Windows Enumeration Cheatsheet
 
 Post-exploitation enumeration commands for Windows machines on HTB.

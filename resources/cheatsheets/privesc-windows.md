@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Windows Privesc"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 4
+permalink: /resources/cheatsheets/privesc-windows/
+---
+
 # Windows Privilege Escalation Cheatsheet
 
 Common privesc vectors encountered in HTB Windows machines.

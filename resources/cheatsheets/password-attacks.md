@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Password Attacks"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 8
+permalink: /resources/cheatsheets/password-attacks/
+---
+
 # Password Attacks Cheatsheet
 
 Cracking, spraying, and brute-forcing techniques for HTB.

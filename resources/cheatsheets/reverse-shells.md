@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Reverse Shells"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 5
+permalink: /resources/cheatsheets/reverse-shells/
+---
+
 # Reverse Shell Cheatsheet
 
 Quick reference for reverse shell one-liners commonly used in HTB machines.

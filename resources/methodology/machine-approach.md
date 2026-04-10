@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Machine Approach"
+parent: Methodology
+grand_parent: Resources
+nav_order: 1
+permalink: /resources/methodology/machine-approach/
+---
+
 # How to Approach Any HTB Machine
 
 A systematic methodology for tackling Hack The Box machines efficiently.

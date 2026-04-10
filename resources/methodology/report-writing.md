@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Report Writing"
+parent: Methodology
+grand_parent: Resources
+nav_order: 3
+permalink: /resources/methodology/report-writing/
+---
+
 # Pentest Report Writing Guide
 
 How to turn your HTB machine notes into a professional-looking writeup.

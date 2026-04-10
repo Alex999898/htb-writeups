@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Pivoting"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 7
+permalink: /resources/cheatsheets/pivoting/
+---
+
 # Pivoting & Tunneling Cheatsheet
 
 Techniques for reaching internal networks through compromised HTB machines.

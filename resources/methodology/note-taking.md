@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Note Taking"
+parent: Methodology
+grand_parent: Resources
+nav_order: 2
+permalink: /resources/methodology/note-taking/
+---
+
 # Note-Taking Template for HTB Machines
 
 Structured template for documenting your HTB machine progress.

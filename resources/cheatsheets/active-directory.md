@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Active Directory"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 1
+permalink: /resources/cheatsheets/active-directory/
+---
+
 # Active Directory Attack Cheatsheet
 
 Comprehensive reference for AD attacks commonly seen in HTB machines and ProLabs.

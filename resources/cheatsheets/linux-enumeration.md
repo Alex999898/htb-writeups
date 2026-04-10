@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Linux Enumeration"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 9
+permalink: /resources/cheatsheets/linux-enumeration/
+---
+
 # Linux Enumeration Cheatsheet
 
 Post-exploitation enumeration commands for Linux machines on HTB.

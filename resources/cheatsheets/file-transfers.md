@@ -1,3 +1,12 @@
+---
+layout: default
+title: "File Transfers"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 6
+permalink: /resources/cheatsheets/file-transfers/
+---
+
 # File Transfer Cheatsheet
 
 Methods to transfer files between attacker and target machines in HTB.

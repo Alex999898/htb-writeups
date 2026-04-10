@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Web Application"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 2
+permalink: /resources/cheatsheets/web-application/
+---
+
 # Web Application Attack Cheatsheet
 
 Quick reference for web exploitation techniques used in HTB machines and challenges.

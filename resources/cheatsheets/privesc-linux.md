@@ -1,3 +1,12 @@
+---
+layout: default
+title: "Linux Privesc"
+parent: Cheatsheets
+grand_parent: Resources
+nav_order: 3
+permalink: /resources/cheatsheets/privesc-linux/
+---
+
 # Linux Privilege Escalation Cheatsheet
 
 Common privesc vectors encountered in HTB machines.
