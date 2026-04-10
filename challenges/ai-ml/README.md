@@ -10,7 +10,7 @@ permalink: /challenges/ai-ml/
 
 | # | Challenge | Difficulty | Key Techniques | Writeup |
 |---|-----------|-----------|----------------|---------|
-| 1 | Sigma Technology | Easy | Adversarial Machine Learning | [7Rocky](https://7rocky.github.io/en/ctf/htb-challenges/ai---ml/) |
+| 1 | Sigma Technology | Easy | Adversarial Machine Learning | [7Rocky](https://7rocky.github.io/en/ctf/htb-challenges/ai---ml/sigma-technology/) |
 | 2 | AI Space | Easy | Multidimensional Scaling, Data Analysis | [1337Sheets](https://www.1337sheets.com/p/hack-the-box-challenge-ai-space-ml-writeup) |
 | 3 | Prometheon | Medium | Multi-Stage Prompt Injection, LLM Bypass | [Medium - Paragbhosale](https://medium.com/@paragbhosale9440/htb-prometheon-exploiting-alignment-boundaries-in-ai-via-prompt-injection-5a195e16a256) |
 | 4 | External Affairs | Medium | AI Travel Screening Bypass, Prompt Injection | [hack-lab-256](https://hack-lab-256.com/en/ai-llm-prompt-injection/1680/) |
