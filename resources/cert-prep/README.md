@@ -21,7 +21,6 @@ The gold standard for penetration testing. Focus on manual exploitation, no auto
 
 | Machine | OS | Key Skills |
 |---------|-----|-----------|
-
 | Lame | Linux | Samba RCE (CVE-2007-2447) |
 | Legacy | Windows | MS08-067, MS17-010 |
 | Blue | Windows | EternalBlue (MS17-010) |
@@ -46,7 +45,6 @@ The gold standard for penetration testing. Focus on manual exploitation, no auto
 
 | Machine | OS | Key Skills |
 |---------|-----|-----------|
-
 | Cronos | Linux | DNS zone transfer, SQLi, cron |
 | SolidState | Linux | Apache James RCE, cron privesc |
 | Poison | Linux | LFI, VNC tunneling |
@@ -67,7 +65,6 @@ HTB's own penetration testing certification. Aligned with HTB Academy modules.
 
 | Machine | OS | Key Skills |
 |---------|-----|-----------|
-
 | Active | Windows | GPP abuse, Kerberoasting |
 | Forest | Windows | AS-REP Roasting, DCSync |
 | Cascade | Windows | LDAP enumeration, .NET reversing |
@@ -92,7 +89,6 @@ Red team operations with Cobalt Strike methodology.
 
 | Machine | OS | Key Skills |
 |---------|-----|-----------|
-
 | Reel | Windows | Phishing, AppLocker bypass, AD |
 | Mantis | Windows | Kerberos MS14-068, AD |
 | Sizzle | Windows | ADCS, Kerberos, CLM bypass |
@@ -111,7 +107,6 @@ Advanced Active Directory attacks and defenses.
 
 | Machine | OS | Key Skills |
 |---------|-----|-----------|
-
 | Blackfield | Windows | AS-REP, backup operators |
 | Multimaster | Windows | Complex AD chain |
 | Object | Windows | AD ACL abuse, GenericWrite |
@@ -134,7 +129,6 @@ Focused on web application security.
 
 | Machine | OS | Key Skills |
 |---------|-----|-----------|
-
 | Talkative | Linux | Rocket.Chat exploit, Docker escape |
 | Forgot | Linux | Redis cache poisoning, password reset |
 | Bagel | Linux | .NET WebSocket, deserialization |
@@ -147,7 +141,6 @@ Focused on web application security.
 
 | Level | Cert | HTB Focus | Timeline |
 |-------|------|-----------|----------|
-
 | Beginner | OSCP | Easy/Medium machines, Dante ProLab | 3-6 months |
 | Intermediate | CPTS | Medium/Hard machines, Offshore ProLab | 4-8 months |
 | Advanced | CRTO | Hard machines, RastaLabs/Zephyr | 2-4 months |
