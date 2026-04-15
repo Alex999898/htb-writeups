@@ -539,6 +539,22 @@ Always practice ethical hacking. Only test systems you have explicit authorizati
 
 ---
 
+## Writeup Sources
+
+Machine writeups in this repo link to multiple independent authors for diverse perspectives. Here are the primary sources:
+
+| Author / Source | URL | Coverage |
+|----------------|-----|----------|
+| **0xdf** | [0xdf.gitlab.io](https://0xdf.gitlab.io/) | 500+ machines - gold standard, exhaustive detail |
+| **IppSec** | [youtube.com/ippsec](https://www.youtube.com/c/ippsec) | 430+ video walkthroughs with live debugging |
+| **HackingArticles** | [hackingarticles.in](https://www.hackingarticles.in/) | 40+ machines - Raj Chandel, classic era (2017-2022) |
+| **Rana Khalil** | [rana-khalil.gitbook.io](https://rana-khalil.gitbook.io/hack-the-box-oscp-preparation/) | 26+ machines - OSCP-focused, no Metasploit |
+| **snowscan** | [snowscan.io](https://snowscan.io/) | 20+ machines - detailed, consistent quality |
+| **0xRick** | [0xrick.github.io](https://0xrick.github.io/categories/hack-the-box/) | 10+ machines - clean blog writeups |
+| **Medium / InfoSecWriteups** | [medium.com](https://medium.com/tag/hackthebox) | 45+ machines - diverse community authors |
+
+---
+
 ## Related Resources
 
 | Resource | Description |
